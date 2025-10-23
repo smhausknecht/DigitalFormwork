@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Analysis
 {
     public class Comp_MViewCover : GH_Component
     {
@@ -25,7 +25,7 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddMeshParameter("Mesh", "M", "Mesh to check coverage for.", GH_ParamAccess.item);
             pManager.AddVectorParameter("Removal Vectors", "RV", "Removal vectors to check for coverage.", GH_ParamAccess.list);
@@ -35,7 +35,7 @@ namespace DigitalFormwork
             pManager[3].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddIntegerParameter("Uncovered faces", "UF", "All faces (in red) that are not covered by the given removal vectors.", GH_ParamAccess.list);
         }
@@ -124,7 +124,7 @@ namespace DigitalFormwork
         // refit clipping box to whole brep
         public override BoundingBox ClippingBox => _wholeBB;
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.Icon_MViewCover;
+        protected override Bitmap Icon => Properties.Resources.Icon_MViewCover;
 
         public override Guid ComponentGuid => new Guid("6CB79B32-EF1B-4036-BEBA-AAE0E097CA4F");
     }

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Analysis
 {
     public class Comp_MCheckColl : GH_Component
     {
@@ -22,7 +22,7 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddMeshParameter("Cast Body", "CB", "Cast body for the formwork parts.", GH_ParamAccess.item);
             pManager.AddMeshParameter("Formwork", "F", "Formwork part", GH_ParamAccess.item);
@@ -31,7 +31,7 @@ namespace DigitalFormwork
             pManager[3].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBooleanParameter("No Collision", "NC", "True if formwork can be removed safely.", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Collision Points", "CP", "Collision points.", GH_ParamAccess.list);
@@ -104,7 +104,7 @@ namespace DigitalFormwork
         // refit clipping box to whole brep
         public override BoundingBox ClippingBox => _wholeBB;
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.Icon_MCheckColl;
+        protected override Bitmap Icon => Properties.Resources.Icon_MCheckColl;
 
         public override Guid ComponentGuid => new Guid("4563DC6E-B76F-4B95-940F-9B7358ECA6FE");
     }

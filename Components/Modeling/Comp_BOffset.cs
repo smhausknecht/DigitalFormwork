@@ -4,7 +4,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Modeling
 {
     public class Comp_BOffset : GH_Component
     {
@@ -17,7 +17,7 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Cast Body", "CB", "The body to create formwork for.", GH_ParamAccess.item);
             pManager.AddNumberParameter("Offset", "O", "Offset distance for the outer layer.", GH_ParamAccess.item);
@@ -27,7 +27,7 @@ namespace DigitalFormwork
             pManager[3].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBrepParameter("Offset", "O", "Offset brep body.", GH_ParamAccess.list);
         }

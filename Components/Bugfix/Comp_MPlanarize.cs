@@ -3,7 +3,7 @@ using Rhino;
 using Rhino.Geometry;
 using System;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Bugfix
 {
     public class Comp_MPlanarize : GH_Component
     {
@@ -17,14 +17,14 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddMeshParameter("Mesh", "M", "The Mesh that will be planarized.", GH_ParamAccess.item);
             pManager.AddBooleanParameter("Triangulate", "T", "If true, all faces will be triangulated even if the quad face is planar.", GH_ParamAccess.item);
             pManager[1].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddMeshParameter("Mesh", "M", "Mesh with planar faces only.", GH_ParamAccess.item);
         }
@@ -42,7 +42,7 @@ namespace DigitalFormwork
 
             // set tolerance
             var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
-            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? (System.Math.PI / 180.0);
+            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? Math.PI / 180.0;
 
             // planarize faces
             if (forceTriangulate) planarMesh.Faces.ConvertQuadsToTriangles();

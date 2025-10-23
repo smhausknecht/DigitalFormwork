@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Analysis
 {
     public class Comp_CheckPVol : GH_Component
     {
@@ -18,7 +18,7 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddMeshParameter("Part", "P", "Part to check dimensions for.", GH_ParamAccess.item);
             pManager.AddNumberParameter("X-dimension", "X", "X-dimension of printer volume. Default: 256 [mm]", GH_ParamAccess.item);
@@ -29,7 +29,7 @@ namespace DigitalFormwork
             pManager[3].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBoxParameter("BoundingBox", "BB", "Minimum bounding box within given dimensions.", GH_ParamAccess.item);
         }
@@ -52,7 +52,7 @@ namespace DigitalFormwork
 
             // set tolerance
             var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
-            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? (System.Math.PI / 180.0);
+            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? Math.PI / 180.0;
 
             // sort dimensions smallest to largest
             var sortedInputDim = new[] { xDim, yDim, zDim }

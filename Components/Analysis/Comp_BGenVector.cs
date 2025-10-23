@@ -4,7 +4,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Analysis
 {
     public class Comp_BGenVector : GH_Component
     {
@@ -17,7 +17,7 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Brep", "B", "The Brep that will be used to generate vectors from its faces.", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Face Indices", "I", "Face indices to create formwork removal vectors from.", GH_ParamAccess.list);
@@ -29,7 +29,7 @@ namespace DigitalFormwork
             pManager[4].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddPointParameter("Anchors", "A", "Anchor points for each vector for easy vector display.", GH_ParamAccess.list);
             pManager.AddVectorParameter("Vectors", "V", "Vectors with an appropriate length for collision testing.", GH_ParamAccess.list);
@@ -59,7 +59,7 @@ namespace DigitalFormwork
 
             // set tolerance
             var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
-            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? (System.Math.PI / 180.0);
+            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? Math.PI / 180.0;
 
             // generate vectors with anchors
             var anchors = new List<Point3d>();

@@ -5,7 +5,7 @@ using System;
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Analysis
 {
     public class Comp_BViewCover : GH_Component
     {
@@ -23,13 +23,13 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Cast Body", "CB", "The body to create formwork for", GH_ParamAccess.item);
             pManager.AddVectorParameter("Removal Vector", "RV", "Formwork removal vector to check for collisions.", GH_ParamAccess.item);
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBooleanParameter("No Collision", "NoColl", "Given for each face of the cast body. True, if the extrusion does not collide with cast body.", GH_ParamAccess.list);
             pManager.AddBrepParameter("Collision Volume", "CV", "In case of collision, shows collision volume", GH_ParamAccess.list);
@@ -152,7 +152,7 @@ namespace DigitalFormwork
         // refit clipping box to whole brep
         public override BoundingBox ClippingBox => _wholeBB;
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.Icon_BViewCover;
+        protected override Bitmap Icon => Properties.Resources.Icon_BViewCover;
 
         public override Guid ComponentGuid => new Guid("457E12F4-FCDA-4776-8268-3C7E324CC453");
     }

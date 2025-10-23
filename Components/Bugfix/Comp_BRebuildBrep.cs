@@ -3,7 +3,7 @@ using Rhino;
 using Rhino.Geometry;
 using System;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Bugfix
 {
     public class Comp_BRebuildBrep : GH_Component
     {
@@ -16,12 +16,12 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddGeometryParameter("Faulty Brep", "B", "The faulty Brep to rebuild.", GH_ParamAccess.item);
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBrepParameter("Brep", "B", "Rebuilt Brep.", GH_ParamAccess.item);
         }

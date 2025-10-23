@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components
 {
     internal class Utils
     {
@@ -290,7 +290,7 @@ namespace DigitalFormwork
             // it is assumed all faces are valid and planar
 
             // extrude and cap
-            var fwrl = Utils.GetFWRL(rv, testFace, component);
+            var fwrl = GetFWRL(rv, testFace, component);
             var sweptVolume = testFace.CreateExtrusion(fwrl, true);
             if (BrepSolidOrientation.Inward == sweptVolume.SolidOrientation) sweptVolume.Flip();
             if (null == sweptVolume || !sweptVolume.IsValid)
@@ -483,10 +483,10 @@ namespace DigitalFormwork
             // divide the surface into subdomains e.g. nrOfPts = 3 means 3*3 = 9 subdomains
             for (int ui = 0; ui < nrOfPts; ui++)
             {
-                var u = uDom.ParameterAt((random.NextDouble() + (double)ui) / nrOfPts);
+                var u = uDom.ParameterAt((random.NextDouble() + ui) / nrOfPts);
                 for (int vi = 0; vi < nrOfPts; vi++)
                 {
-                    var v = vDom.ParameterAt((random.NextDouble() + (double)vi) / nrOfPts);
+                    var v = vDom.ParameterAt((random.NextDouble() + vi) / nrOfPts);
                     var pt = checkFaceSrf.PointAt(u, v);
                     if (checkFace.IsPointOnFace(u, v) == PointFaceRelation.Interior) yield return pt;
                 }

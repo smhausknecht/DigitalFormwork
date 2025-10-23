@@ -3,7 +3,7 @@ using Grasshopper.Kernel.Types;
 using Rhino;
 using System;
 
-namespace DigitalFormwork
+namespace DigitalFormwork.Components.Bugfix
 {
     public class Comp_BPrepBrep : GH_Component
     {
@@ -16,14 +16,14 @@ namespace DigitalFormwork
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddGeometryParameter("Body", "B", "The geometry to prepare as Brep for other components.", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Limit", "L", "Safety limit. Prevents conversion from Meshes to Brep, if the input has more faces than the limit in order to prevent crashes. Default = 1000", GH_ParamAccess.item);
             pManager[1].Optional = true;
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBrepParameter("Brep", "B", "Clean Brep.", GH_ParamAccess.item);
         }
