@@ -18,7 +18,7 @@ namespace DigitalFormwork
         public override Guid Id => new Guid("b81bc43a-ec6b-4d6f-8f17-b101330f7ade");
 
         //Return a string identifying you or your company.
-        public override string AuthorName => "S. M. Hausknecht";
+        public override string AuthorName => "Simon M. Hausknecht";
 
         //Return a string representing your preferred contact details.
         public override string AuthorContact => "mxmumpwr70@gmail.com";
