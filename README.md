@@ -1,7 +1,7 @@
-﻿## DigitalFormwork
+﻿# DigitalFormwork
 DigitalFormwork is a Grasshopper plug-in that enables 3D-printable formwork design, offering support for modeling formwork and analyzing its removability and manufacturability.
 
-# Components
+## Components
 - Analysis:
 	-	Generate Vector From Mesh Face Normal
 	-	Generate Vector From Brep Face Normal
@@ -24,7 +24,7 @@ DigitalFormwork is a Grasshopper plug-in that enables 3D-printable formwork desi
 	-	Prepare Brep
 	-	Rebuild Brep
 
-# How to use it
+## How to use it
 Generate a removal vector that indicates the direction a formwork part will be removed in with either native Grasshopper components or the 'Generate Vector From [...]' components.
 You can then analyze the geometry that you want to create formwork for, with the 'View Removal Vector Coverage [...]' components to see whether vectors you are using are sufficient and where they might lead to problems.
 Next, create formwork parts. I suggest using DigitalFormworks 'Offset Brep' or the native components 'Bounding Box' or 'Shrink Wrap'. All that matters is that the models used are solid and valid. If they aren't, try using the 'Bugfix' components. Use Rhinos '_MeshRepair' for meshes.
@@ -33,7 +33,7 @@ Don't forget to add a funnel for pouring material in. To ensure that the formwor
 Once you have the formwork parts, check them again with 'Check Formwork Removal' to make sure there are no collisions with the cast body.
 If you want to 3D-print your formwork parts, use 'Check Print Volume' to make sure your printer is big enough to print your parts. Export as .stl and print.
 
-# Development
+## Development
 DigitalFormwork was built for Rhinoceros 8 and Grasshopper version 8.24.25281.15001 using .NET Framework 4.8 and was entirely written in C#.
 
 You can check out the source code at: https://github.com/m4xxxp0w3r/DigitalFormwork
@@ -42,9 +42,9 @@ At this stage of development 'View Removal Vector Coverage On Brep' is limited t
 
 If you find bugs, have ideas for improvement or simply want to share your success with DigitalFormwork, I'd be glad to hear about it at: mxmumpwr70@gmail.com
 
-# License
+## License
 
 GPL-3.0
 
-# Author
+## Author
 Simon M. Hausknecht
