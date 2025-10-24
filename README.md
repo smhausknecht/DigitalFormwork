@@ -1,6 +1,10 @@
 ﻿# DigitalFormwork
 DigitalFormwork is a Grasshopper plug-in that enables 3D-printable formwork design, offering support for modeling formwork and analyzing its removability and manufacturability.
 
+<p align="center">
+  <img src="Icons/Icon_DigitalFormwork_Large" alt="DF Logo" width="200"/>
+</p>
+
 ## Components
 - Analysis:
 	-	Generate Vector From Mesh Face Normal
@@ -36,11 +40,9 @@ If you want to 3D-print your formwork parts, use 'Check Print Volume' to make su
 ## Development
 DigitalFormwork was built for Rhinoceros 8 and Grasshopper version 8.24.25281.15001 using .NET Framework 4.8 and was entirely written in C#.
 
-You can check out the source code at: https://github.com/m4xxxp0w3r/DigitalFormwork
+You can check out the source code at: https://github.com/smhausknecht/DigitalFormwork
 
 At this stage of development 'View Removal Vector Coverage On Brep' is limited to Breps with planar faces. I will work to expand functionality when I find the time.
-
-If you find bugs, have ideas for improvement or simply want to share your success with DigitalFormwork, I'd be glad to hear about it at: mxmumpwr70@gmail.com
 
 ## License
 
