@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Grasshopper.Kernel;
+using System;
 using System.Drawing;
-using Grasshopper;
-using Grasshopper.Kernel;
 
 namespace DigitalFormwork
 {
@@ -27,3 +26,6 @@ namespace DigitalFormwork
         public override string AssemblyVersion => GetType().Assembly.GetName().Version.ToString();
     }
 }
+
+/// SPDX-License-Identifier: GPL-3.0
+/// Copyright(c) 2025 Simon M. Hausknecht

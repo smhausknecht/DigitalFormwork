@@ -78,3 +78,7 @@ namespace DigitalFormwork.Components.Analysis
         public override Guid ComponentGuid => new Guid("34E99012-9FC7-4C96-A895-C4F34DE6E81A");
     }
 }
+
+/// DigitalFormwork
+/// SPDX-License-Identifier: GPL-3.0
+/// Copyright(c) 2025 Simon M. Hausknecht

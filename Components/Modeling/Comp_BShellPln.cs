@@ -65,3 +65,7 @@ namespace DigitalFormwork
         public override Guid ComponentGuid => new Guid("FA8B9781-2E75-4B63-AC9C-61DE86D7874C");
     }
 }
+
+/// DigitalFormwork
+/// SPDX-License-Identifier: GPL-3.0
+/// Copyright(c) 2025 Simon M. Hausknecht

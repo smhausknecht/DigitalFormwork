@@ -891,3 +891,7 @@ namespace DigitalFormwork.Components
         }
     }
 }
+
+/// DigitalFormwork
+/// SPDX-License-Identifier: GPL-3.0
+/// Copyright(c) 2025 Simon M. Hausknecht
