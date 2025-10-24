@@ -2,7 +2,7 @@
 DigitalFormwork is a Grasshopper plug-in that enables 3D-printable formwork design, offering support for modeling formwork and analyzing its removability and manufacturability.
 
 <p align="center">
-  <img src="Icons/Icon_DigitalFormwork_Large" alt="DF Logo" width="200"/>
+  <img src="Icons/Icon_DigitalFormwork_Large.png" alt="DF Logo" width="200"/>
 </p>
 
 ## Components
