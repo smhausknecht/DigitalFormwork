@@ -74,8 +74,10 @@ namespace DigitalFormwork.Components.Analysis
             var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
             // threshold for two vectors to be considered perpendicular
             var perpThreshold = tol;
-            // distance to move vectors away from face to avoid collision
-            var dis = (float)tol;
+            // distance to move vectors away from face and edge to avoid collision
+            var dis = 300;                          // empirical value based on testing
+            var disNorm = (float)(tol * dis);
+            var disEdge = tol * dis;
 
             var noCollision = new bool[inputBody.Faces.Count];
             var uncovered = new List<int>();
@@ -94,7 +96,7 @@ namespace DigitalFormwork.Components.Analysis
                     if (currentRp < rpThreshold - perpThreshold) noCollision[fi] = false;           // if draft angle is below threshold
                     else
                     {
-                        noCollision[fi] = Utils.MeshFaceNoCollision(inputBody, fi, ptDensity, tol, dis, inputVectors[vi]);
+                        noCollision[fi] = Utils.MeshFaceNoCollision(inputBody, fi, ptDensity, disEdge, disNorm, inputVectors[vi]);
                     }
                 }
                 // add faces to list for display
