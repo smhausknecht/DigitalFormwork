@@ -74,7 +74,7 @@ namespace DigitalFormwork.Components.Analysis
             var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
             // threshold for two vectors to be considered perpendicular
             var perpThreshold = tol;
-            // distance to move vectors away from face and edge to avoid collision
+            // distance to move vectors away from face and edges to avoid collision
             var dis = 300;                          // empirical value based on testing
             var disNorm = (float)(tol * dis);
             var disEdge = tol * dis;

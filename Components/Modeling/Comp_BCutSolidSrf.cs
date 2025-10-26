@@ -47,6 +47,7 @@ namespace DigitalFormwork
             var brepsToCut = new List<Brep> { inputBrep };
             foreach (var cutter in cuttingBreps)
             {
+                if (null == cutter) continue;
                 var splitParts = new List<Brep>();
                 // loop through breps
                 for (int bi = 0; bi < brepsToCut.Count; bi++)

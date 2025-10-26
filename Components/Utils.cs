@@ -80,7 +80,7 @@ namespace DigitalFormwork.Components
             {
                 if (null == face || !face.IsValid)
                 {
-                    component.AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Input Brep has at least one invalid.");
+                    component.AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Input Brep has at least one invalid face.");
                     return false;
                 }
                 if (!face.IsPlanar(tolerance))
@@ -128,6 +128,7 @@ namespace DigitalFormwork.Components
 
             foreach (BrepFace face in faces)
             {
+                if(null == face) continue;
                 Brep faceBrep = face.DuplicateFace(true); // true = duplicate trims
                 if (faceBrep != null)
                     trimmedFaces.Add(faceBrep);
@@ -309,9 +310,10 @@ namespace DigitalFormwork.Components
             }
             else
             {
-                foreach (var overlapBodies in overlap)
+                foreach (var overlapBody in overlap)
                 {
-                    var vmp = VolumeMassProperties.Compute(overlapBodies, true, false, false, false);
+                    if(null == overlapBody) continue;
+                    var vmp = VolumeMassProperties.Compute(overlapBody, true, false, false, false);
                     if ((vmp?.Volume ?? 0.0) > tolerance)
                     {
                         collisionVolume = overlap;
@@ -397,6 +399,7 @@ namespace DigitalFormwork.Components
             var reducedIntRegionCrvs = new List<Curve>();
             foreach (var intLoopCrv in allIntersectSrfLoops)
             {
+                if(null == intLoopCrv) continue;
                 var diff = Curve.CreateBooleanDifference(intLoopCrv, outerLoopCurve, tolerance);
                 if (null != diff && diff.Length > 0) reducedIntRegionCrvs.AddRange(diff);
             }
@@ -405,8 +408,10 @@ namespace DigitalFormwork.Components
             var criticalRegionCrvs = new List<Curve>();
             foreach (var redIntLoopCrv in reducedIntRegionCrvs)
             {
+                if (null == redIntLoopCrv) continue;
                 foreach (var ruledLoopCrv in ruledRegion.RegionCurves(0))
                 {
+                    if(null == ruledLoopCrv) continue;
                     var intersect = Curve.CreateBooleanIntersection(redIntLoopCrv, ruledLoopCrv, tolerance);
                     if (null != intersect && intersect.Length > 0) criticalRegionCrvs.AddRange(intersect);
                 }
@@ -576,7 +581,6 @@ namespace DigitalFormwork.Components
                 var checkPts = YieldPointsOnTriangle(ptA, ptB, ptC, ptDensity, edgeDistance);
                 foreach(var pt in checkPts)
                 {
-
                     var noCollision = MeshRayNoCollision(mesh, pt, removalVector);
                     if (!noCollision) return false;
 
@@ -628,14 +632,11 @@ namespace DigitalFormwork.Components
                 var checkPts = YieldPointsOnTriangle(ptA, ptB, ptC, ptDensity, edgeDistance);
                 foreach (var pt in checkPts)
                 {
-
                     var noCollPt = MeshRayNoCollision(targetMesh, pt, removalVector, out int[] collIndArr);
                     if (!noCollPt)           // noCollision for any point = false
                     {
                         noCollision = false;
                         collFaceIndSet.UnionWith(collIndArr);
-                        //collFaceIndices = collFaceIndSet.ToArray();
-                        //return false;
                     }
                         
 
@@ -674,8 +675,6 @@ namespace DigitalFormwork.Components
                     {
                         noCollision = false;
                         collFaceIndSet.UnionWith(collIndArr);
-                        //collFaceIndices = collFaceIndSet.ToArray();
-                        //return false;
                     }
                 }
 
@@ -687,13 +686,8 @@ namespace DigitalFormwork.Components
                     {
                         noCollision = false;
                         collFaceIndSet.UnionWith(collIndArr);
-                        //collFaceIndices = collFaceIndSet.ToArray();
-                        //return false;
                     }
                 }
-                // noCollision = true for this face
-                //collFaceIndices = Array.Empty<int>();
-                //return true;
 
                 if (noCollision)
                 {

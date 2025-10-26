@@ -52,6 +52,7 @@ namespace DigitalFormwork
             var shells = new List<Brep>();
             foreach (var part in cutShell)
             {
+                if (null == part) continue;
                 var pieces = Brep.CreateBooleanDifference(part, innerShell, tol) ?? Array.Empty<Brep>();
                 shells.AddRange(pieces);
             }

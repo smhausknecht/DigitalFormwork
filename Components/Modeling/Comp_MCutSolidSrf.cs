@@ -41,10 +41,6 @@ namespace DigitalFormwork
             var cuttingMeshes = new List<Mesh>();
             if (!DA.GetDataList(1, cuttingMeshes)) return;
             if (null == cuttingMeshes || cuttingMeshes.Count == 0) return;
-            foreach(var mesh in cuttingMeshes)
-            {
-                if (!Utils.CheckMeshSolid(mesh, this)) return;
-            }
 
             bool returnSolid = true;
             DA.GetData(2, ref returnSolid);
@@ -53,6 +49,7 @@ namespace DigitalFormwork
             var meshesToCut = new List<Mesh> { inputBody };
             foreach (var cutter in cuttingMeshes)
             {
+                if (null == cutter) continue;
                 var splitParts = new List<Mesh>();
                 // loop through breps
                 for (int mi = 0; mi < meshesToCut.Count; mi++)
