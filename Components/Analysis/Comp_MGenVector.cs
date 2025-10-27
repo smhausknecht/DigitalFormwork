@@ -1,10 +1,8 @@
-﻿using Grasshopper;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Rhino;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DigitalFormwork.Components.Analysis
 {
@@ -24,6 +22,8 @@ namespace DigitalFormwork.Components.Analysis
         {
             pManager.AddMeshParameter("Mesh", "M", "The Mesh that will be used to generate vectors from its faces.", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Face Indices", "I", "Face indices to create formwork removal vectors from.", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Length", "L", "Vector Length. Defaults to length of the Bounding Box.", GH_ParamAccess.item);
+            pManager[2].Optional = true;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -34,10 +34,6 @@ namespace DigitalFormwork.Components.Analysis
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            // set tolerance
-            var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
-            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? Math.PI / 180.0;
-
             // assign input
             Mesh inputBody = null;
             if (!DA.GetData(0, ref inputBody)) return;
@@ -49,13 +45,18 @@ namespace DigitalFormwork.Components.Analysis
             inputBody.Normals.ComputeNormals();
             inputBody.FaceNormals.ComputeFaceNormals();
 
-            var orientedBoxes = Utils.YieldOrientedBoxes(inputBody, tol, atol, this);
-            List<Box> sortedBoundingBoxes = orientedBoxes.OrderBy(o => o.Volume).ToList();
-            if (!sortedBoundingBoxes[0].IsValid) return;
+            var minVlength = 1.0;
+            if (!DA.GetData(2, ref minVlength))
+            {
+                var bbox = inputBody.GetBoundingBox(false);
+                minVlength = bbox.Diagonal.Length;
+            }
 
-            // scale to BB diagonal length
-            var minFwrLength = Utils.BoxDiagonalLength(sortedBoundingBoxes[0]);
+            // set tolerance
+            var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
+            var atol = RhinoDoc.ActiveDoc?.ModelAngleToleranceRadians ?? Math.PI / 180.0;
 
+            // get centers and vectors
             var centers = new List<Point3d>();
             var rv = new List<Vector3d>();
             for (int i = 0; i < inputIndices.Count; i++)
@@ -63,7 +64,7 @@ namespace DigitalFormwork.Components.Analysis
                 var currentFaceIndex = RhinoMath.Clamp(inputIndices[i], 0, inputBody.Faces.Count - 1);
                 var currentCentroid = Utils.MeshFaceCentroid(inputBody, inputBody.Faces[currentFaceIndex]);
                 var currentCNV = new Vector3d(inputBody.FaceNormals[currentFaceIndex]);
-                currentCNV = currentCNV * minFwrLength;
+                currentCNV = currentCNV * minVlength;
                 centers.Add(currentCentroid);
                 rv.Add(currentCNV);
             }

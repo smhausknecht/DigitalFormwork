@@ -33,9 +33,9 @@ Generate a removal vector that indicates the direction a formwork part will be r
 You can then analyze the geometry that you want to create formwork for, with the 'View Removal Vector Coverage [...]' components to see whether vectors you are using are sufficient and where they might lead to problems.
 Next, create formwork parts. I suggest using DigitalFormworks 'Offset Brep' or the native components 'Bounding Box' or 'Shrink Wrap'. All that matters is that the models used are solid and valid. If they aren't, try using the 'Bugfix' components. Use Rhinos '_MeshRepair' for meshes.
 Afterwards you can cut the solids into formwork parts with planes or surfaces - either with the 'Create [...] Shell [..]' components or by using a 'Cut Solid [...]' component and cutting out the cast body with 'Boolean Difference' afterwards.
-Don't forget to add a funnel for pouring material in. To ensure that the formwork parts don't fall apart while pouring, add places to place clamps or bolts. Also, prevent them from sliding apart. A simple way to do it is to connect them with a slot and key connection using basic shapes (e.g. boxes).
+Don't forget to add a funnel for pouring material in. To ensure that the formwork parts don't fall apart while pouring, add places to place clamps or bolts. Also, prevent them from sliding apart. A simple way to do it is to connect them with a slot-and-key connection using basic shapes (e.g. boxes).
 Once you have the formwork parts, check them again with 'Check Formwork Removal' to make sure there are no collisions with the cast body.
-If you want to 3D-print your formwork parts, use 'Check Print Volume' to make sure your printer is big enough to print your parts. Export as .stl and print.
+If you want to 3D-print your formwork parts, use 'Check Print Volume' to make sure your printer is big enough to print your parts. Export parts as .stl and print.
 
 ## Development
 DigitalFormwork was built for Rhinoceros 8 and Grasshopper version 8.24.25281.15001 using .NET Framework 4.8 and was entirely written in C#.

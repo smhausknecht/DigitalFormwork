@@ -21,9 +21,9 @@ namespace DigitalFormwork.Components.Analysis
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddMeshParameter("Part", "P", "Part to check dimensions for.", GH_ParamAccess.item);
-            pManager.AddNumberParameter("X-dimension", "X", "X-dimension of printer volume. Default: 256 [mm]", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Y-dimension", "Y", "Y-dimension of printer volume. Default: 256 [mm]", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Z-dimension", "Z", "Z-dimension of printer volume. Default: 256 [mm]", GH_ParamAccess.item);
+            pManager.AddNumberParameter("X-dimension", "X", "X-dimension of printer volume. Default: 250 [mm]", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Y-dimension", "Y", "Y-dimension of printer volume. Default: 250 [mm]", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Z-dimension", "Z", "Z-dimension of printer volume. Default: 250 [mm]", GH_ParamAccess.item);
             pManager[1].Optional = true;
             pManager[2].Optional = true;
             pManager[3].Optional = true;
@@ -39,10 +39,10 @@ namespace DigitalFormwork.Components.Analysis
             // assign input
             Mesh inputBody = null;
             if (!DA.GetData(0, ref inputBody)) return;
-            // default dimensions: full print volume of BambuLab P1S without AMS in [mm]
-            var xDim = 256.0;
-            var yDim = 256.0;
-            var zDim = 256.0;
+            // default dimensions: print volume of BambuLab P1S
+            var xDim = 250.0;
+            var yDim = 250.0;
+            var zDim = 250.0;
             DA.GetData(1, ref xDim);
             DA.GetData(2, ref yDim);
             DA.GetData(3, ref zDim);

@@ -9,10 +9,13 @@ namespace DigitalFormwork.Components.Analysis
 {
     public class Comp_BViewCover : GH_Component
     {
+        private BoundingBox _wholeBB;
         private List<Mesh> _meshesGreen = new List<Mesh>();
         private List<Mesh> _meshesYellow = new List<Mesh>();
         private List<Mesh> _meshesRed = new List<Mesh>();
-        private BoundingBox _wholeBB;
+        private Rhino.Display.DisplayMaterial _matG = new Rhino.Display.DisplayMaterial(Color.Green, 0.0);
+        private Rhino.Display.DisplayMaterial _matY = new Rhino.Display.DisplayMaterial(Color.Yellow, 0.0);
+        private Rhino.Display.DisplayMaterial _matR = new Rhino.Display.DisplayMaterial(Color.Red, 0.0);
 
         public Comp_BViewCover()
           : base("View Removal Vector Coverage On Brep",
@@ -125,27 +128,17 @@ namespace DigitalFormwork.Components.Analysis
         // display collisions
         public override void DrawViewportMeshes(IGH_PreviewArgs args)
         {
-            var matG = new Rhino.Display.DisplayMaterial(args.ShadeMaterial);
-            var matY = new Rhino.Display.DisplayMaterial(args.ShadeMaterial);
-            var matR = new Rhino.Display.DisplayMaterial(args.ShadeMaterial);
-
-            matG.Diffuse = Color.Green;
-            matY.Diffuse = Color.Yellow;
-            matR.Diffuse = Color.Red;
-
-            matR.Transparency = 0.30;
-
             foreach (var mg in _meshesGreen ?? new List<Mesh>())
             {
-                args.Display.DrawMeshShaded(mg, matG);
+                args.Display.DrawMeshShaded(mg, _matG);
             }
             foreach (var my in _meshesYellow ?? new List<Mesh>())
             {
-                args.Display.DrawMeshShaded(my, matY);
+                args.Display.DrawMeshShaded(my, _matY);
             }
             foreach (var mr in _meshesRed ?? new List<Mesh>())
             {
-                args.Display.DrawMeshShaded(mr, matR);
+                args.Display.DrawMeshShaded(mr, _matR);
             }
         }
 

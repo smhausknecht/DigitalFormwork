@@ -44,7 +44,6 @@ namespace DigitalFormwork
 
             Mesh cuttingMesh = null;
             if (!DA.GetData(2, ref cuttingMesh)) return;
-            if (!Utils.CheckMeshSolid(cuttingMesh, this)) return;
 
             // set tolerance
             var tol = RhinoDoc.ActiveDoc?.ModelAbsoluteTolerance ?? 1e-3;
