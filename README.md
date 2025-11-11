@@ -17,8 +17,8 @@ DigitalFormwork is a Grasshopper plug-in that enables 3D-printable formwork desi
 	-	Offset Brep
 	-	Cut Solid Mesh By Planes
 	-	Cut Solid Brep By Planes
-	-	Cut Solid Mesh By Surfaces
-	-	Cut Solid Brep By Surfaces
+	-	Cut Solid Mesh By Mesh Surface
+	-	Cut Solid Brep By Brep Surface
 	-	Create Mesh Shell with Plane
 	-	Create Brep Shell with Plane
 	-	Create Mesh Shell with Mesh Surface

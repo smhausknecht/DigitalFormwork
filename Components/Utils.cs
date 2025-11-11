@@ -780,6 +780,9 @@ namespace DigitalFormwork.Components
             // yield returns bounding boxes for a mesh oriented towards all three edges of each mesh face
             // it is assumed mesh is valid
 
+            // This is a modified version of the algorithm for 3D minimum bounding boxes from "Minimum Bounding Box" by Ayoub Lharchi which was published under an MIT license
+            // see "https://www.food4rhino.com/en/app/minimum-bounding-box"
+
             // get convex hull 3D
             var cbVertices = mesh.Vertices.Select(v => (Point3d)v).ToList();
             var convex3DHull = Mesh.CreateConvexHull3D(cbVertices, out _, tolerance, angleTolerance);
