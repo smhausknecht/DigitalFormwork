@@ -10,7 +10,7 @@ namespace DigitalFormwork
     public class Comp_MShellPln : GH_Component
     {
         public Comp_MShellPln()
-          : base("Create Mesh Shell with Plane",
+          : base("Create Mesh Shell With Plane",
                 "MeshShellPln",
                 "Cuts two Mesh layers with planes into solid shells.",
                 "DigitalFormwork",

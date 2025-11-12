@@ -49,7 +49,7 @@ namespace DigitalFormwork.Components.Bugfix
             else planarMesh.Faces.ConvertNonPlanarQuadsToTriangles(tol, atol, 0);
 
             // clean up
-            planarMesh = Utils.CleanMesh(inputBody);
+            planarMesh = Utils.CleanMesh(planarMesh);
 
             // assign output
             DA.SetData(0, planarMesh);

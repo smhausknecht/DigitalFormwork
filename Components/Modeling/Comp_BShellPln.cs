@@ -10,7 +10,7 @@ namespace DigitalFormwork
     public class Comp_BShellPln : GH_Component
     {
         public Comp_BShellPln()
-          : base("Create Brep Shell with Plane",
+          : base("Create Brep Shell With Plane",
                 "BrepShellPln",
                 "Cuts two Brep layers with planes into solid shells.",
                 "DigitalFormwork",
